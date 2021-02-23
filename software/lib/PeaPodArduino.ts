@@ -29,7 +29,7 @@ export class ArduinoInstructionsError extends Error {
 
 export interface IPeaPodArduino {
     start(onMessage : (msg : PeaPodMessage)=> any): void;
-    stop(): Promise<void>;
+    stop(): void;
 }
 
 export type ArduinoInstructions = {

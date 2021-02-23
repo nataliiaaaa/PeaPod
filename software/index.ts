@@ -69,9 +69,27 @@ async function main(){
     await sleep(1500);
     var peapod = new PeaPod();
     const user = await peapod.authenticate();
-    await peapod.post()
+    await peapod.setup((msg : string, finished: boolean)=>{
+        if(!loading.isSpinning){
+            loading = ora({
+                text: msg,
+                spinner: defaultSpinner,
+            }).start();
+        }
+        if(finished){
+            loading.succeed(msg);
+        } else {
+            loading.text = msg;
+        }
+    })
+    loading.succeed();
     peapod.arduino?.start((msg)=>{
         console.log(`[${chalk.magenta(msg.type.toUpperCase())}] - ${JSON.stringify(msg.msg)}`);
+        peapod.firebase?.start((topic, msg)=>{
+            console.log(`[${chalk.green(`SERVER - ${topic.toUpperCase}`)}] - "${msg}"`);
+        }, (err)=>{
+            console.log(`[${chalk.redBright(`SERVER - ERROR`)}] - "${err}"`);
+        });
     })
 }
 
