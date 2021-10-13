@@ -1,0 +1,37 @@
+#                   DEFAULT
+# This owner will be the default owners for everything in
+# the repo. Unless a later match takes precedence, they will
+# be requested for review when someone opens a pull request.
+
+*                           @JLefebvre55
+
+#                   ADMIN
+# Repo administration code
+
+/.github/                   @UpRouteFoundation/admins
+LICENSE                     @UpRouteFoundation/admins
+.gitignore                  @UpRouteFoundation/admins
+
+#                   DOCUMENTATION
+# TODO: other file types?
+
+/docs/                      @UpRouteFoundation/documentation-review
+*.tex                       @UpRouteFoundation/documentation-review
+*.md                        @UpRouteFoundation/documentation-review
+
+#                   SOFTWARE
+# Arduino and RPi
+
+/software/                  @UpRouteFoundation/software
+*.ts                        @UpRouteFoundation/software
+/software/arduino/          @UpRouteFoundation/electronics
+*.cpp                       @UpRouteFoundation/electronics
+*.ino                       @UpRouteFoundation/electronics
+*.h                         @UpRouteFoundation/electronics
+
+#                   HARDWARE
+# Mechanical and PCBs
+/hardware/                  @UpRouteFoundation/mechanical
+/hardware/electronics/      @UpRouteFoundation/electronics
+
+# TODO: Per-deliverable code ownership?
